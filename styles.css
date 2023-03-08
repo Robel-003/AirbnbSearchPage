@@ -1,0 +1,61 @@
+body {
+    background: #ffffff;
+    font-family: 'Droid Sans', sans-serif;
+}
+
+main {
+    min-width: 855px;
+}
+  
+main {
+    max-width: 855px;
+    margin: auto;
+}
+
+h1 {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 3em;
+    margin: 2px, 2px;
+}
+
+main {
+    min-width: 855px;
+}
+  
+
+  
+main {
+    background: #9cf291;
+    width: 600px;
+    padding: 10px;
+    
+}
+
+h1 {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 2.5em;
+    margin: 2px, 2px;
+}
+
+h2 {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1em;
+    margin-bottom: 2px;
+}
+
+form {
+    background: #b6f4ae;
+    padding: 10px 10px 10px 10px;
+    border-radius: 0 5px 5px 5px;
+    width: 400px;
+}
+
+input {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+button {
+    margin: 2px 2px 2px 8px;
+}
+

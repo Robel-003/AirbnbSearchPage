@@ -1,0 +1,83 @@
+<!--create a page with a button and 3 input elements, for each input element, user can specify
+        * property_type
+        * bedrooms
+        * beds
+
+    upon clicking the button,
+        * attach property_type, bedrooms, beds values in the query string
+        * make a fetch request to your MongoDB findOne API clone (make sure you're running findOne API clone)
+        * return listing_url, name, summary, property_type, bedrooms, beds as HTML list
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA_Compatible" content="ie=edge">
+    <title>AirBnb Search Page</title>   
+    <link href="styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>AirBnb Listing</h1>
+    </header>
+    <main>
+        <form>
+            <h2>Property Type</h2>
+            <input id="property_type" placeholder="Property Type" type="text"><br>
+            <h2>Bedrooms</h2>
+            <input id="bedrooms" placeholder="No. of Bedrooms" type="number"><br>
+            <h2>Beds</h2>
+            <input id="beds" placeholder="No. of Beds" type="number"><br>
+        </form>
+        <button id="Button" onclick="fetchListings()">Get Listings</button>
+        <div id="airbnb">
+            <h4><ul id="airbnbListing"></ul></h4>
+        </div>
+    </main>
+
+    <script>        
+
+        // make an array for different property types 
+            // -> property_types: [Apartment, Loft, Guesthouse, House, Condominium]
+
+        async function fetchListings() {
+            
+            // getting input value from users entry (property_type, bedrooms, beds)
+            // and parsing text into numerical values
+            const property_type_text = document.getElementById("property_type").value;
+            const num_of_bedrooms = document.getElementById("bedrooms").value;
+            const num_of_beds = document.getElementById("beds").value;
+            const numOfBedrooms = parseInt(num_of_bedrooms);
+            const numOfBeds = parseInt(num_of_beds);
+
+            const query = `property_type=${property_type_text}&bedrooms=${numOfBedrooms}&beds=${numOfBeds}`;
+            const api_endpoint = `http://localhost:3000/findOne/?${query}`;
+            const response = await fetch(api_endpoint );
+            const data = await response.json();
+            const result = data.airbnb;
+            console.log(result);
+            console.log(data);
+            
+            //const listing_url = <a href="listing_url"></a>
+
+            const airbnbResult = document.getElementById("airbnbListing");
+            airbnbResult.innerHTML = "";
+            const list = document.createElement("p");
+            list.innerHTML = 
+            `<p>Listing URL: ${data.listing_url}</p>
+            <p>Name: ${data.name}</p>
+            <p>Summary: ${data.summary}</p>
+            <p>Property Type: ${data.property_type}</p>
+            <p>Bedrooms: ${data.bedrooms}</p>
+            <p>Beds: ${data.beds}</p>`;
+            //<a href= "listing_url"></a>
+            airbnbResult.appendChild(list);
+        
+        }
+
+    </script>
+</body>
+</html>
